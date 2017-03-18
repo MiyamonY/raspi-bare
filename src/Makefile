@@ -8,7 +8,7 @@ LINKER_SCRIPT = rpiMicon.lds
 STARTUP = startup.o
 OBJS = main.o
 
-OBJS += rpi_lib/rpi_init.o rpi_lib/bss/clearbss.o
+OBJS += rpi_lib/rpi_init.o rpi_lib/bss/clearbss.o rpi_lib/timer/rpi_timer.o rpi_lib/delay/rpi_delay.o
 TARGET = kernel
 
 CFLAGS = -mfloat-abi=soft -mlittle-endian
