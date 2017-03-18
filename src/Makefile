@@ -14,7 +14,7 @@ TARGET = kernel
 CFLAGS = -mfloat-abi=soft -mlittle-endian
 CFLAGS += -nostdinc -fno-builtin
 CFLAGS += -O2
-
+CFLAGS += -I$(shell pwd)
 LDFLAGS = -static -nosdtlib
 
 .PHONY: clean tags
