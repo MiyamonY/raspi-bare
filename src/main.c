@@ -9,7 +9,7 @@ int main(void)
 {
   rpi_init();
 
-  *GPIO_GPFSEL4 = 0x01 << (3 * 7);
+  pinMode(GPIO_ACT_PIN, GPIO_MODE_OUTPUT);
 
   while (1) {
     static uint32_t count = 0;

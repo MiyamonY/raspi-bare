@@ -48,22 +48,24 @@ void pinMode(gpio_pin_t pin, gpio_pin_t mode)
     offset = pin;
   } else if (pin < 20) {
     select_addr = GPIO_GPFSEL1;
-    offset = pin - 10;
+    offset = (pin - 10);
   } else if (pin < 30) {
     select_addr = GPIO_GPFSEL2;
-    offset = pin - 20;
+    offset = (pin - 20);
   } else if (pin < 40) {
     select_addr = GPIO_GPFSEL3;
-    offset = pin - 30;
+    offset = (pin - 30);
   } else if (pin < 50) {
     select_addr = GPIO_GPFSEL4;
-    offset = pin - 40;
+    offset = (pin - 40);
   } else if (pin < 54) {
     select_addr = GPIO_GPFSEL5;
-    offset = pin - 50;
+    offset = (pin - 50);
   } else {
     /* error */
   }
+
+  offset *= 3;
 
   rpi_peripheral_addr_t pullup_addr = GPIO_GPPUDCLK0;
   if (pin < 32) {
@@ -96,22 +98,22 @@ void pinMode(gpio_pin_t pin, gpio_pin_t mode)
     *pullup_addr = (PULL_UD_CLK_ASSERT << (pin % 32));
     WAIT_150_CYCLE();
     break;
-  case GPIO_ALT0:
+  case GPIO_MODE_ALT0:
     *select_addr = (PIN_MODE_ALT0 << offset);
     break;
-  case GPIO_ALT1:
+  case GPIO_MODE_ALT1:
     *select_addr = (PIN_MODE_ALT1 << offset);
     break;
-  case GPIO_ALT2:
+  case GPIO_MODE_ALT2:
     *select_addr = (PIN_MODE_ALT2 << offset);
     break;
-  case GPIO_ALT3:
+  case GPIO_MODE_ALT3:
     *select_addr = (PIN_MODE_ALT3 << offset);
     break;
-  case GPIO_ALT4:
+  case GPIO_MODE_ALT4:
     *select_addr = (PIN_MODE_ALT4 << offset);
     break;
-  case GPIO_ALT5:
+  case GPIO_MODE_ALT5:
     *select_addr = (PIN_MODE_ALT5 << offset);
     break;
   }

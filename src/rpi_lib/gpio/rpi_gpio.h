@@ -23,12 +23,12 @@ typedef enum {
   GPIO_MODE_OUTPUT,
   GPIO_MODE_INPUT_PULL_UP,
   GPIO_MODE_INPUT_PULL_DOWN,
-  GPIO_ALT0,
-  GPIO_ALT1,
-  GPIO_ALT2,
-  GPIO_ALT3,
-  GPIO_ALT4,
-  GPIO_ALT5
+  GPIO_MODE_ALT0,
+  GPIO_MODE_ALT1,
+  GPIO_MODE_ALT2,
+  GPIO_MODE_ALT3,
+  GPIO_MODE_ALT4,
+  GPIO_MODE_ALT5
 } gpio_mode_t;
 
 typedef enum {
@@ -37,7 +37,7 @@ typedef enum {
 } gpio_hl_t;
 
 extern void pinMode(gpio_pin_t pin, gpio_pin_t mode);
-extern void digitalWirte(gpio_pin_t pin, gpio_hl_t hl);
+extern void digitalWrite(gpio_pin_t pin, gpio_hl_t hl);
 extern gpio_hl_t digitalRead(gpio_pin_t pin);
 
 #ifdef __cplusplus
