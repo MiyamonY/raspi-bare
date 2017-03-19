@@ -15,15 +15,20 @@
     }                                                                                                                                      \
   } while (0)
 
+#define BITSET3(val, set, offset)                                                                                                          \
+  do {                                                                                                                                     \
+    (val) &= (((~((uint32_t)0b111 << (offset)))) | ((set) << (offset)));                                                                   \
+  } while (0)
+
 typedef enum {
   PIN_MODE_INPUT = 0b000,
   PIN_MODE_OUTPUT = 0b001,
-  PIN_MODE_ALT0 = 0b010,
-  PIN_MODE_ALT1 = 0b011,
-  PIN_MODE_ALT2 = 0b100,
-  PIN_MODE_ALT3 = 0b101,
-  PIN_MODE_ALT4 = 0b110,
-  PIN_MODE_ALT5 = 0b111,
+  PIN_MODE_ALT0 = 0b100,
+  PIN_MODE_ALT1 = 0b101,
+  PIN_MODE_ALT2 = 0b110,
+  PIN_MODE_ALT3 = 0b111,
+  PIN_MODE_ALT4 = 0b011,
+  PIN_MODE_ALT5 = 0b010,
 } gpio_pin_mode_t;
 
 typedef enum {
@@ -79,42 +84,40 @@ void pinMode(gpio_pin_t pin, gpio_pin_t mode)
   switch (mode) {
   case GPIO_MODE_INPUT:
   default:
-    *select_addr = (PIN_MODE_INPUT << offset);
+    BITSET3(*select_addr, PIN_MODE_INPUT, offset);
     break;
   case GPIO_MODE_OUTPUT:
-    *select_addr = (PIN_MODE_OUTPUT << offset);
+    BITSET3(*select_addr, PIN_MODE_OUTPUT, offset);
     break;
   case GPIO_MODE_INPUT_PULL_UP:
-    *select_addr = (PIN_MODE_INPUT << offset);
     *GPIO_GPPUD = PULL_UD_PULL_UP_ENABLE;
     WAIT_150_CYCLE();
     *pullup_addr = (PULL_UD_CLK_ASSERT << (pin % 32));
     WAIT_150_CYCLE();
     break;
   case GPIO_MODE_INPUT_PULL_DOWN:
-    *select_addr = (PIN_MODE_INPUT << offset);
     *GPIO_GPPUD = PULL_UD_PULL_DOWN_ENABLE;
     WAIT_150_CYCLE();
     *pullup_addr = (PULL_UD_CLK_ASSERT << (pin % 32));
     WAIT_150_CYCLE();
     break;
   case GPIO_MODE_ALT0:
-    *select_addr = (PIN_MODE_ALT0 << offset);
+    BITSET3(*select_addr, PIN_MODE_ALT0, offset);
     break;
   case GPIO_MODE_ALT1:
-    *select_addr = (PIN_MODE_ALT1 << offset);
+    BITSET3(*select_addr, PIN_MODE_ALT1, offset);
     break;
   case GPIO_MODE_ALT2:
-    *select_addr = (PIN_MODE_ALT2 << offset);
+    BITSET3(*select_addr, PIN_MODE_ALT2, offset);
     break;
   case GPIO_MODE_ALT3:
-    *select_addr = (PIN_MODE_ALT3 << offset);
+    BITSET3(*select_addr, PIN_MODE_ALT3, offset);
     break;
   case GPIO_MODE_ALT4:
-    *select_addr = (PIN_MODE_ALT4 << offset);
+    BITSET3(*select_addr, PIN_MODE_ALT4, offset);
     break;
   case GPIO_MODE_ALT5:
-    *select_addr = (PIN_MODE_ALT5 << offset);
+    BITSET3(*select_addr, PIN_MODE_ALT5, offset);
     break;
   }
 
