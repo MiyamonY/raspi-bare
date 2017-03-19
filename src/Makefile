@@ -8,12 +8,13 @@ LINKER_SCRIPT = rpiMicon.lds
 STARTUP = startup.o
 OBJS = main.o
 
-OBJS += rpi_lib/rpi_init.o rpi_lib/bss/clearbss.o rpi_lib/timer/rpi_timer.o rpi_lib/delay/rpi_delay.o
+OBJS += rpi_lib/rpi_init.o rpi_lib/bss/clearbss.o rpi_lib/timer/rpi_timer.o rpi_lib/delay/rpi_delay.o\
+	rpi_lib/gpio/rpi_gpio.o
 TARGET = kernel
 
 CFLAGS = -mfloat-abi=soft -mlittle-endian
 CFLAGS += -nostdinc -fno-builtin
-CFLAGS += -O2
+CFLAGS += -O2 -std=gnu99
 CFLAGS += -I$(shell pwd)
 LDFLAGS = -static -nosdtlib
 

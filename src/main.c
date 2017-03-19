@@ -1,6 +1,9 @@
 #include "rpi_lib/delay/rpi_delay.h"
+#include "rpi_lib/gpio/rpi_gpio.h"
 #include "rpi_lib/peripherals/rpi_peripherals.h"
 #include "rpi_lib/rpi.h"
+
+#define SLEEP_MS 1000
 
 int main(void)
 {
@@ -10,12 +13,12 @@ int main(void)
 
   while (1) {
     static uint32_t count = 0;
-    delay(1000);
+    delay(SLEEP_MS);
 
     if (count) {
-      *GPIO_GPSET1 = 0x01 << 15;
+      digitalWrite(GPIO_ACT_PIN, GPIO_HIGH);
     } else {
-      *GPIO_GPCLR1 = 0x01 << 15;
+      digitalWrite(GPIO_ACT_PIN, GPIO_LOW);
     }
 
     count = ~count;

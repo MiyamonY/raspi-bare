@@ -14,7 +14,9 @@
 extern "C" {
 #endif
 
-#define PHY_PERI_ADDR(addr) ((vuint32_t *)(0x3F000000 + addr))
+typedef vuint32_t *rpi_peripheral_addr_t;
+
+#define PHY_PERI_ADDR(addr) ((rpi_peripheral_addr_t)(0x3F000000 + addr))
 
 #define GPIO_BASE (0x200000)
 #define GPIO_GPFSEL0 PHY_PERI_ADDR(GPIO_BASE + 0x00)
@@ -28,6 +30,12 @@ extern "C" {
 #define GPIO_GPSET1 PHY_PERI_ADDR(GPIO_BASE + 0x20)
 #define GPIO_GPCLR0 PHY_PERI_ADDR(GPIO_BASE + 0x28)
 #define GPIO_GPCLR1 PHY_PERI_ADDR(GPIO_BASE + 0x2C)
+#define GPIO_GPLEV0 PHY_PERI_ADDR(GPIO_BASE + 0x34)
+#define GPIO_GPLEV1 PHY_PERI_ADDR(GPIO_BASE + 0x38)
+
+#define GPIO_GPPUD PHY_PERI_ADDR(GPIO_BASE + 0x94)
+#define GPIO_GPPUDCLK0 PHY_PERI_ADDR(GPIO_BASE + 0x98)
+#define GPIO_GPPUDCLK1 PHY_PERI_ADDR(GPIO_BASE + 0x9c)
 
 #define SYST_BASE (0x003000)
 #define SYST_CLO PHY_PERI_ADDR(SYST_BASE + 0x04)
