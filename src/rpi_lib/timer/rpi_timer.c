@@ -11,7 +11,7 @@
 
 uint64_t millis(void)
 {
-  return micros() * 1000;
+  return micros() / 1000;
 }
 
 uint64_t micros(void)

@@ -41,6 +41,14 @@ typedef vuint32_t *rpi_peripheral_addr_t;
 #define SYST_CLO PHY_PERI_ADDR(SYST_BASE + 0x04)
 #define SYST_CHI PHY_PERI_ADDR(SYST_BASE + 0x08)
 
+#define UART0_BASE (0x201000)
+#define UART0_DR PHY_PERI_ADDR(UART0_BASE + 0x00)
+#define UART0_FR PHY_PERI_ADDR(UART0_BASE + 0x18)
+#define UART0_IBRD PHY_PERI_ADDR(UART0_BASE + 0x24)
+#define UART0_FBRD PHY_PERI_ADDR(UART0_BASE + 0x28)
+#define UART0_LCRH PHY_PERI_ADDR(UART0_BASE + 0x2c)
+#define UART0_CR PHY_PERI_ADDR(UART0_BASE + 0x30)
+
 #ifdef __cplusplus
 }
 #endif

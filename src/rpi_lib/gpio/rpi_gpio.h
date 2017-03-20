@@ -15,8 +15,10 @@ extern "C" {
 #endif
 typedef uint64_t gpio_pin_t;
 
-#define GPIO_PWR_PIN ((pgio_pin_t)35)
+#define GPIO_PWR_PIN ((gpio_pin_t)35)
 #define GPIO_ACT_PIN ((gpio_pin_t)47)
+#define GPIO_UART0_TX_PIN ((gpio_pin_t)14)
+#define GPIO_UART0_RX_PIN ((gpio_pin_t)15)
 
 typedef enum {
   GPIO_MODE_INPUT,
