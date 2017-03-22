@@ -16,15 +16,16 @@
 static int32_t SerialReadTimeOutMs = -1;
 static int32_t SerialWriteTimeOutMs = -1;
 
-static inline uint32_t calc_baurate_integer(uint32_t baurate)
+static inline uint32_t calc_baurate_integer(uint32_t baurate, uint32_t ratio)
 {
-  return F_UARTCLK / baurate;
+  return ((uint64_t)ratio * F_UARTCLK) / (16 * baurate);
 }
 
 static inline uint32_t calc_baurate_fractional(uint32_t baurate)
 {
-  uint32_t i = calc_baurate_integer(baurate);
-  return (((((uint64_t)F_UARTCLK * 1000) / baurate) - i * 1000) * 64 + (0.5 * 1000)) / 1000;
+  uint32_t i = calc_baurate_integer(baurate, 1);
+  uint32_t i1000 = calc_baurate_integer(baurate, 1000);
+  return ((i1000 - (i * 1000)) * 64 + (0.5 * 1000)) / 1000;
 }
 
 int32_t Serial_begin(uint32_t baurate)
@@ -37,7 +38,7 @@ int32_t Serial_begin(uint32_t baurate)
   pinMode(GPIO_UART0_RX_PIN, GPIO_MODE_ALT0);
 
   /* baurate */
-  uint32_t i = calc_baurate_integer(baurate);
+  uint32_t i = calc_baurate_integer(baurate, 1);
   if ((i < 1) || (0xffff < i)) return -1;
 
   uint32_t f = calc_baurate_fractional(baurate);
