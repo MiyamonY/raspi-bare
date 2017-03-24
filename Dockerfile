@@ -5,7 +5,7 @@ RUN set -x && \
     apt-get install -y build-essential sudo \
     python3 python2.7 python-dev libzip-dev \
     automake libncurses5-dev gperf bison flex gawk \
-    libtool libexpat-dev expat wget texinfo libtool-bin device-tree-compiler
+    libtool libexpat-dev expat wget texinfo libtool-bin device-tree-compiler bc
 
 RUN groupadd -g 1000 raspi && \
     useradd -g raspi -G sudo -m -s /bin/bash raspi && \
