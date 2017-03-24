@@ -35,6 +35,9 @@ ${TARGET}.elf : $(STARTUP) $(OBJS)
 .elf.img:
 	$(OBJCOPY) -O binary $< $@
 
+bootscr:
+	mkimage -A arm -T script -C none -n "U-Boot script" -d boot/boot.txt boot/boot.scr
+
 clean:
 	$(RM) -f *.o *.img *.elf */*/*.o
 	$(RM) -f tags *~
