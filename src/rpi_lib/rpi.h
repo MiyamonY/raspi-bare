@@ -8,6 +8,7 @@
 #ifndef _RPI_H_
 #define _RPI_H_
 
+#include "rpi_lib/delay/rpi_delay.h"
 #include "rpi_lib/gpio/rpi_gpio.h"
 #include "rpi_lib/peripherals/rpi_peripherals.h"
 #include "rpi_lib/rpi_types.h"
