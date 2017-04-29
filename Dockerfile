@@ -35,8 +35,8 @@ RUN wget http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.19.0.tar.b
 WORKDIR /home/raspi/cross/src/ct-ng_rpi
 
 RUN /home/raspi/cross/bin/ct-ng build
-WORKDIR /home/raspi
 
+WORKDIR /home/raspi
 RUN echo 'export PATH=$PATH:~/cross/rpi/arm-unknown-eabi/bin' >> .bash_profile
 
 VOLUME /home/raspi/project

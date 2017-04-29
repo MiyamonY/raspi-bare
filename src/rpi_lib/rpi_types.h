@@ -11,16 +11,9 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+#include <stdint.h>
 
-typedef char int8_t;
-typedef unsigned char uint8_t;
-typedef signed int int32_t;
-typedef unsigned int uint32_t;
-typedef volatile int vint32_t;
 typedef volatile unsigned int vuint32_t;
-
-typedef long long int64_t;
-typedef unsigned long long uint64_t;
 
 #ifdef __cplusplus
 }

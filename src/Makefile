@@ -17,10 +17,10 @@ LIBS += -L/home/raspi/cross/rpi/arm-unknown-eabi/arm-unknown-eabi/lib
 TARGET = kernel
 
 CFLAGS = -mfloat-abi=soft -mlittle-endian
-CFLAGS += -fno-builtin
+CFLAGS += -fno-builtin  -march=armv7-a -mtune=cortex-a7
 CFLAGS += -O2 -std=gnu99
 CFLAGS += -I$(shell pwd)
-LDFLAGS = -static
+LDFLAGS = -static -DARM
 
 .PHONY: clean tags
 

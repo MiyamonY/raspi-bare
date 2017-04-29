@@ -8,16 +8,21 @@
 #include "rpi_gpio.h"
 #include "rpi_lib/peripherals/rpi_peripherals.h"
 #include "rpi_lib/rpi_types.h"
+
+#if defined(ARM)
 #define WAIT_150_CYCLE()                                                                                                                   \
   do {                                                                                                                                     \
     for (uint32_t i = 0; i < 150; i++) {                                                                                                   \
       asm("mov r0,r0");                                                                                                                    \
     }                                                                                                                                      \
   } while (0)
+#else
+#define WAIT_150_CYCLE()
+#endif
 
 #define BITSET3(val, set, offset)                                                                                                          \
   do {                                                                                                                                     \
-    (val) &= (((~((uint32_t)0b111 << (offset)))) | ((set) << (offset)));                                                                   \
+    (val) &= (((~((uint32_t)0b111 << ((offset)*3)))) | ((set) << ((offset)*3)));                                                           \
   } while (0)
 
 typedef enum {

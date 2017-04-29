@@ -17,8 +17,18 @@ typedef uint64_t gpio_pin_t;
 
 #define GPIO_PWR_PIN ((gpio_pin_t)35)
 #define GPIO_ACT_PIN ((gpio_pin_t)47)
+
 #define GPIO_UART0_TX_PIN ((gpio_pin_t)14)
 #define GPIO_UART0_RX_PIN ((gpio_pin_t)15)
+
+#define GPIO_BSC1_SDA1_PIN ((gpio_pin_t)2)
+#define GPIO_BSC1_SCL1_PIN ((gpio_pin_t)3)
+
+#define GPIO_SPI0_CE1 ((gpio_pin_t)7)
+#define GPIO_SPI0_CE0 ((gpio_pin_t)8)
+#define GPIO_SPI0_MISO ((gpio_pin_t)9)
+#define GPIO_SPI0_MOSI ((gpio_pin_t)10)
+#define GPIO_SPI0_SCLK ((gpio_pin_t)11)
 
 typedef enum {
   GPIO_MODE_INPUT,
