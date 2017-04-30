@@ -15,27 +15,53 @@ extern "C" {
 #endif
 
 typedef vuint32_t *rpi_peripheral_addr_t;
+typedef uint32_t rpi_peripheral_register_t;
 
 #define PHY_PERI_ADDR(addr) ((rpi_peripheral_addr_t)(0x3F000000 + addr))
 
 #define GPIO_BASE (0x200000)
-#define GPIO_GPFSEL0 PHY_PERI_ADDR(GPIO_BASE + 0x00)
-#define GPIO_GPFSEL1 PHY_PERI_ADDR(GPIO_BASE + 0x04)
-#define GPIO_GPFSEL2 PHY_PERI_ADDR(GPIO_BASE + 0x08)
-#define GPIO_GPFSEL3 PHY_PERI_ADDR(GPIO_BASE + 0x0C)
-#define GPIO_GPFSEL4 PHY_PERI_ADDR(GPIO_BASE + 0x10)
-#define GPIO_GPFSEL5 PHY_PERI_ADDR(GPIO_BASE + 0x14)
 
-#define GPIO_GPSET0 PHY_PERI_ADDR(GPIO_BASE + 0x1C)
-#define GPIO_GPSET1 PHY_PERI_ADDR(GPIO_BASE + 0x20)
-#define GPIO_GPCLR0 PHY_PERI_ADDR(GPIO_BASE + 0x28)
-#define GPIO_GPCLR1 PHY_PERI_ADDR(GPIO_BASE + 0x2C)
-#define GPIO_GPLEV0 PHY_PERI_ADDR(GPIO_BASE + 0x34)
-#define GPIO_GPLEV1 PHY_PERI_ADDR(GPIO_BASE + 0x38)
-
-#define GPIO_GPPUD PHY_PERI_ADDR(GPIO_BASE + 0x94)
-#define GPIO_GPPUDCLK0 PHY_PERI_ADDR(GPIO_BASE + 0x98)
-#define GPIO_GPPUDCLK1 PHY_PERI_ADDR(GPIO_BASE + 0x9c)
+typedef struct {
+  rpi_peripheral_register_t GPFSEL0;
+  rpi_peripheral_register_t GPFSEL1;
+  rpi_peripheral_register_t GPFSEL2;
+  rpi_peripheral_register_t GPFSEL3;
+  rpi_peripheral_register_t GPFSEL4;
+  rpi_peripheral_register_t GPFSEL5;
+  rpi_peripheral_register_t reserved0;
+  rpi_peripheral_register_t GPSET0;
+  rpi_peripheral_register_t GPSET1;
+  rpi_peripheral_register_t reserved1;
+  rpi_peripheral_register_t GPCLR0;
+  rpi_peripheral_register_t GPCLR1;
+  rpi_peripheral_register_t reserved2;
+  rpi_peripheral_register_t GPLEV0;
+  rpi_peripheral_register_t GPLEV1;
+  rpi_peripheral_register_t reserved3;
+  rpi_peripheral_register_t GPEDS0;
+  rpi_peripheral_register_t GPEDS1;
+  rpi_peripheral_register_t reserved4;
+  rpi_peripheral_register_t GPFEN0;
+  rpi_peripheral_register_t GPFEN1;
+  rpi_peripheral_register_t reserved5;
+  rpi_peripheral_register_t GPHEN0;
+  rpi_peripheral_register_t GPHEN1;
+  rpi_peripheral_register_t reserved6;
+  rpi_peripheral_register_t GPLEN0;
+  rpi_peripheral_register_t GPLEN1;
+  rpi_peripheral_register_t reserved7;
+  rpi_peripheral_register_t GPAREN0;
+  rpi_peripheral_register_t GPAREN1;
+  rpi_peripheral_register_t reserved8;
+  rpi_peripheral_register_t GPAFEN0;
+  rpi_peripheral_register_t GPAFEN1;
+  rpi_peripheral_register_t reserved9;
+  rpi_peripheral_register_t GPPUD;
+  rpi_peripheral_register_t GPPUDCLK0;
+  rpi_peripheral_register_t GPPUDCLK1;
+  rpi_peripheral_register_t reserved10;
+  rpi_peripheral_register_t reserved11;
+} rpi_peripheral_gpio_t;
 
 #define SYST_BASE (0x003000)
 #define SYST_CLO PHY_PERI_ADDR(SYST_BASE + 0x04)
@@ -67,6 +93,29 @@ typedef vuint32_t *rpi_peripheral_addr_t;
 #define SPI0_DLEN PHY_PERI_ADDR(SPI0_BASE + 0x0C)
 #define SPI0_LTOH PHY_PERI_ADDR(SPI0_BASE + 0x10)
 #define SPI0_DC PHY_PERI_ADDR(SPI0_BASE + 0x14)
+
+#define INTERRUPT_BASE (0x00B200)
+#define INTERRUPT_IRQ_BASIC_PENDING PHY_PERI_ADDR(INTERRUPT_BASE + 0x00)
+#define INTERRUPT_IRQ_PENDING1 PHY_PERI_ADDR(INTERRUPT_BASE + 0x04)
+#define INTERRUPT_IRQ_PENDING2 PHY_PERI_ADDR(INTERRUPT_BASE + 0x08)
+#define INTERRUPT_FIQ_CONTROL PHY_PERI_ADDR(INTERRUPT_BASE + 0x0C)
+#define INTERRUPT_ENABLE_IRQS1 PHY_PERI_ADDR(INTERRUPT_BASE + 0x10)
+#define INTERRUPT_ENABLE_IRQS2 PHY_PERI_ADDR(INTERRUPT_BASE + 0x14)
+#define INTERRUPT_ENABLE_BASIC_IRQS PHY_PERI_ADDR(INTERRUPT_BASE + 0x18)
+#define INTERRUPT_DISABLE_IRQS1 PHY_PERI_ADDR(INTERRUPT_BASE + 0x1C)
+#define INTERRUPT_DISABLE_IRQS2 PHY_PERI_ADDR(INTERRUPT_BASE + 0x20)
+#define INTERRUPT_DISABLE_BASIC_IRQS PHY_PERI_ADDR(INTERRUPT_BASE + 0x24)
+
+#define TIMER_BASE (0x00B400)
+#define TIMER_LOAD PHY_PERI_ADDR(TIMER_BASE + 0x00)
+#define TIMER_VALUE PHY_PERI_ADDR(TIMER_BASE + 0x04)
+#define TIMER_CONTROL PHY_PERI_ADDR(TIMER_BASE + 0x08)
+#define TIMER_IRQ_CLR PHY_PERI_ADDR(TIMER_BASE + 0x0C)
+#define TIMER_RAW_IRQ PHY_PERI_ADDR(TIMER_BASE + 0x10)
+#define TIMER_MASKED_IRQ PHY_PERI_ADDR(TIMER_BASE + 0x14)
+#define TIMER_RELOAD PHY_PERI_ADDR(TIMER_BASE + 0x18)
+#define TIMER_PREDIVIDER PHY_PERI_ADDR(TIMER_BASE + 0x1C)
+#define TIMER_FREE_RUNNING_COUNTER PHY_PERI_ADDR(TIMER_BASE + 0x20)
 
 #ifdef __cplusplus
 }

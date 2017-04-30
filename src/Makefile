@@ -19,8 +19,8 @@ TARGET = kernel
 CFLAGS = -mfloat-abi=soft -mlittle-endian
 CFLAGS += -fno-builtin  -march=armv7-a -mtune=cortex-a7
 CFLAGS += -O2 -std=gnu99
-CFLAGS += -I$(shell pwd)
-LDFLAGS = -static -DARM
+CFLAGS += -I$(shell pwd) -DARM
+LDFLAGS = -static
 
 .PHONY: clean tags
 

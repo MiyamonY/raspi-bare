@@ -1,6 +1,6 @@
 #include "rpi.h"
-#include "rpi_lib/bss/rpi_bss.h"
-#include "rpi_lib/peripherals/rpi_peripherals.h"
+
+static const rpi_peripheral_gpio_t *GPIO = (rpi_peripheral_gpio_t *)PHY_PERI_ADDR(GPIO_BASE);
 
 void rpi_init(void)
 {
