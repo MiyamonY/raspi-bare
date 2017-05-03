@@ -49,7 +49,28 @@ typedef enum {
   PULL_UD_CLK_ASSERT = 1,
 } gpio_pull_ud_clk_t;
 
-static rpi_peripheral_gpio_t GPIO __attribute__((at(PHY_PERI_ADDR(GPIO_BASE))));
+#if defined(ARM)
+static rpi_peripheral_gpio_t GPIO __attribute__((section(".peripheral_gpio")));
+#else
+static rpi_peripheral_gpio_t GPIO;
+#endif
+
+#if defined(UNIT_TEST)
+rpi_peripheral_gpio_t gpio_get_peripheral_register(void)
+{
+  return GPIO;
+}
+
+rpi_peripheral_gpio_t gpio_clear_peripheral_register(void)
+{
+  GPIO.GPFSEL0 = 0;
+  GPIO.GPFSEL1 = 0;
+  GPIO.GPFSEL2 = 0;
+  GPIO.GPFSEL3 = 0;
+  GPIO.GPFSEL4 = 0;
+  GPIO.GPFSEL5 = 0;
+}
+#endif
 
 void pinMode(gpio_pin_t pin, gpio_pin_t mode)
 {

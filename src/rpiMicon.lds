@@ -1,25 +1,35 @@
 OUTPUT_ARCH(arm)
 ENTRY(_start)
 
+MEMORY {
+       rom        (rx): ORIGIN = 0x01000000, LENGTH = 1M
+       ram        (rwx): ORIGIN = 0x02000000, LENGTH = 1M
+       peripheral (rw): ORIGIN = 0x3F000000, LENGTH = 0x01000000
+
+}
+
 SECTIONS {
 
-         . = 0x01000000;
-
-         .text : { *(.text*) }
+         .text : { *(.text*) } > rom
          . = ALIGN(4);
 
          __rodata_start = .;
-         .rodata : { *(.data*) }
+         .rodata : { *(.data*) } > rom
          . = ALIGN(4);
          __rodata_end = .;
 
          __data_start = .;
-         .data : { *(.data*) }
+         .data : { *(.data*) } > ram
          . = ALIGN(4);
          __data_end = .;
 
          __bss_start = .;
-         .bss : { *(.bss*) }
+         .bss : { *(.bss*) } > ram
          . = ALIGN(4);
          __bss_end = .;
+
+         .peripheral_gpio 0x3F200000 (NOLOAD):
+         {
+            KEEP(*(.peripheral_gpio*))
+         } > peripheral
 }

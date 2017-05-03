@@ -19,9 +19,7 @@ typedef uint32_t rpi_peripheral_register_t;
 
 #define PHY_PERI_ADDR(addr) ((rpi_peripheral_addr_t)(0x3F000000 + addr))
 
-#define GPIO_BASE (0x200000)
-
-typedef struct {
+typedef struct __attribute__((packed)) {
   rpi_peripheral_register_t GPFSEL0;
   rpi_peripheral_register_t GPFSEL1;
   rpi_peripheral_register_t GPFSEL2;

@@ -54,6 +54,10 @@ extern void pinMode(gpio_pin_t pin, gpio_pin_t mode);
 extern void digitalWrite(gpio_pin_t pin, gpio_hl_t hl);
 extern gpio_hl_t digitalRead(gpio_pin_t pin);
 
+#if defined(UNIT_TEST)
+extern rpi_peripheral_gpio_t gpio_get_peripheral_register(void);
+#endif
+
 #ifdef __cplusplus
 }
 #endif
