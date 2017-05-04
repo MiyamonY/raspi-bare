@@ -61,6 +61,8 @@ typedef struct __attribute__((packed)) {
   rpi_peripheral_register_t reserved11;
 } rpi_peripheral_gpio_t;
 
+extern rpi_peripheral_gpio_t GPIO;
+
 #define SYST_BASE (0x003000)
 #define SYST_CLO PHY_PERI_ADDR(SYST_BASE + 0x04)
 #define SYST_CHI PHY_PERI_ADDR(SYST_BASE + 0x08)

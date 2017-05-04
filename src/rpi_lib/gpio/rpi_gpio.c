@@ -49,51 +49,35 @@ typedef enum {
   PULL_UD_CLK_ASSERT = 1,
 } gpio_pull_ud_clk_t;
 
-#if defined(ARM)
-static rpi_peripheral_gpio_t GPIO __attribute__((section(".peripheral_gpio")));
-#else
-static rpi_peripheral_gpio_t GPIO;
-#endif
+static rpi_peripheral_gpio_t *gpio;
 
-#if defined(UNIT_TEST)
-rpi_peripheral_gpio_t gpio_get_peripheral_register(void)
+void rpi_gpio_init(rpi_peripheral_gpio_t *peripheral)
 {
-  return GPIO;
+  gpio = peripheral;
 }
-
-rpi_peripheral_gpio_t gpio_clear_peripheral_register(void)
-{
-  GPIO.GPFSEL0 = 0;
-  GPIO.GPFSEL1 = 0;
-  GPIO.GPFSEL2 = 0;
-  GPIO.GPFSEL3 = 0;
-  GPIO.GPFSEL4 = 0;
-  GPIO.GPFSEL5 = 0;
-}
-#endif
 
 void pinMode(gpio_pin_t pin, gpio_pin_t mode)
 {
-  rpi_peripheral_register_t *select_addr = &GPIO.GPFSEL0;
+  rpi_peripheral_register_t *select_addr = &gpio->GPFSEL0;
   uint32_t offset = 0;
 
   if (pin < 10) {
-    select_addr = &GPIO.GPFSEL0;
+    select_addr = &gpio->GPFSEL0;
     offset = pin;
   } else if (pin < 20) {
-    select_addr = &GPIO.GPFSEL1;
+    select_addr = &gpio->GPFSEL1;
     offset = (pin - 10);
   } else if (pin < 30) {
-    select_addr = &GPIO.GPFSEL2;
+    select_addr = &gpio->GPFSEL2;
     offset = (pin - 20);
   } else if (pin < 40) {
-    select_addr = &GPIO.GPFSEL3;
+    select_addr = &gpio->GPFSEL3;
     offset = (pin - 30);
   } else if (pin < 50) {
-    select_addr = &GPIO.GPFSEL4;
+    select_addr = &gpio->GPFSEL4;
     offset = (pin - 40);
   } else if (pin < 54) {
-    select_addr = &GPIO.GPFSEL5;
+    select_addr = &gpio->GPFSEL5;
     offset = (pin - 50);
   } else {
     /* error */
@@ -101,11 +85,11 @@ void pinMode(gpio_pin_t pin, gpio_pin_t mode)
 
   offset *= 3;
 
-  rpi_peripheral_register_t *pullup_addr = &GPIO.GPPUDCLK0;
+  rpi_peripheral_register_t *pullup_addr = &gpio->GPPUDCLK0;
   if (pin < 32) {
-    pullup_addr = &GPIO.GPPUDCLK0;
+    pullup_addr = &gpio->GPPUDCLK0;
   } else if (pin < 54) {
-    pullup_addr = &GPIO.GPPUDCLK1;
+    pullup_addr = &gpio->GPPUDCLK1;
   } else {
     /* error */
   }
@@ -119,13 +103,13 @@ void pinMode(gpio_pin_t pin, gpio_pin_t mode)
     BITSET3(*select_addr, PIN_MODE_OUTPUT, offset);
     break;
   case GPIO_MODE_INPUT_PULL_UP:
-    GPIO.GPPUD = PULL_UD_PULL_UP_ENABLE;
+    gpio->GPPUD = PULL_UD_PULL_UP_ENABLE;
     WAIT_150_CYCLE();
     *pullup_addr = (PULL_UD_CLK_ASSERT << (pin % 32));
     WAIT_150_CYCLE();
     break;
   case GPIO_MODE_INPUT_PULL_DOWN:
-    GPIO.GPPUD = PULL_UD_PULL_DOWN_ENABLE;
+    gpio->GPPUD = PULL_UD_PULL_DOWN_ENABLE;
     WAIT_150_CYCLE();
     *pullup_addr = (PULL_UD_CLK_ASSERT << (pin % 32));
     WAIT_150_CYCLE();
@@ -155,20 +139,20 @@ void pinMode(gpio_pin_t pin, gpio_pin_t mode)
 
 void digitalWrite(gpio_pin_t pin, gpio_hl_t hl)
 {
-  rpi_peripheral_register_t *addr = &GPIO.GPCLR0;
+  rpi_peripheral_register_t *addr = &gpio->GPCLR0;
   uint32_t offset = 0;
 
   if (pin < 32) {
     if (hl == GPIO_LOW) {
-      addr = &GPIO.GPCLR0;
+      addr = &gpio->GPCLR0;
     } else {
-      addr = &GPIO.GPCLR0;
+      addr = &gpio->GPCLR0;
     }
   } else if (pin < 54) {
     if (hl == GPIO_LOW) {
-      addr = &GPIO.GPCLR1;
+      addr = &gpio->GPCLR1;
     } else {
-      addr = &GPIO.GPSET1;
+      addr = &gpio->GPSET1;
     }
   } else {
     /* error */
@@ -182,13 +166,13 @@ void digitalWrite(gpio_pin_t pin, gpio_hl_t hl)
 
 gpio_hl_t digitalRead(gpio_pin_t pin)
 {
-  rpi_peripheral_register_t *addr = &GPIO.GPLEV0;
+  rpi_peripheral_register_t *addr = &gpio->GPLEV0;
   uint32_t offset = 0;
 
   if (pin < 32) {
-    addr = &GPIO.GPLEV0;
+    addr = &gpio->GPLEV0;
   } else if (pin < 54) {
-    addr = &GPIO.GPLEV1;
+    addr = &gpio->GPLEV1;
   } else {
     /* error */
   }

@@ -9,7 +9,7 @@ STARTUP = startup.o
 
 OBJS = main.o
 OBJS += rpi_lib/rpi_init.o rpi_lib/bss/clearbss.o rpi_lib/timer/rpi_timer.o rpi_lib/delay/rpi_delay.o\
-	rpi_lib/gpio/rpi_gpio.o rpi_lib/serial/rpi_serial.o syscall.o
+	rpi_lib/gpio/rpi_gpio.o rpi_lib/serial/rpi_serial.o syscall.o rpi_lib/peripherals/rpi_peripherals.o
 
 LIBS += -L/home/raspi/cross/rpi/arm-unknown-eabi/lib/gcc/arm-unknown-eabi/4.8.1/
 LIBS += -L/home/raspi/cross/rpi/arm-unknown-eabi/arm-unknown-eabi/lib
