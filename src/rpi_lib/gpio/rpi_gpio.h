@@ -8,6 +8,8 @@
 #ifndef _RPI_GPIO_H_
 #define _RPI_GPIO_H_
 
+#include <stdbool.h>
+
 #include "rpi_lib/peripherals/rpi_peripherals.h"
 #include "rpi_lib/rpi_types.h"
 
@@ -49,10 +51,10 @@ typedef enum {
   GPIO_HIGH = 1,
 } gpio_hl_t;
 
-extern void gpio_init(const rpi_peripheral_gpio_t *const addr);
-extern void pinMode(gpio_pin_t pin, gpio_pin_t mode);
-extern void digitalWrite(gpio_pin_t pin, gpio_hl_t hl);
-extern gpio_hl_t digitalRead(gpio_pin_t pin);
+extern void rpi_gpio_init(rpi_peripheral_gpio_t *peripheral);
+extern bool rpi_gpio_set_pin_mode(gpio_pin_t pin, gpio_mode_t mode);
+extern bool rpi_gpio_set_pin(gpio_pin_t pin, gpio_hl_t hl);
+extern bool rpi_gpio_get_pin(gpio_pin_t pin, gpio_hl_t *hl);
 
 #if defined(UNIT_TEST)
 extern rpi_peripheral_gpio_t gpio_get_peripheral_register(void);
