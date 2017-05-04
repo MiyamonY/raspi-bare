@@ -20,7 +20,7 @@ CFLAGS = -mfloat-abi=soft -mlittle-endian
 CFLAGS += -fno-builtin  -march=armv7-a -mtune=cortex-a7
 CFLAGS += -O2 -std=gnu99
 CFLAGS += -I$(shell pwd) -DARM
-LDFLAGS = -static
+LDFLAGS = -static -Map kernel.map
 
 .PHONY: clean tags
 
