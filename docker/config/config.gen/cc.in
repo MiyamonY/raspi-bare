@@ -8,12 +8,13 @@ choice GEN_CHOICE_CC
 config CC_gcc
     bool
     prompt "gcc"
-    select CC_SUPPORT_CXX
+    select CC_SUPPORT_CXX if !LIBC_none
     select CC_SUPPORT_FORTRAN
     select CC_SUPPORT_JAVA
     select CC_SUPPORT_ADA
     select CC_SUPPORT_OBJC
     select CC_SUPPORT_OBJCXX
+    select CC_SUPPORT_GOLANG
     help
       gcc is the full-blown GNU compiler. This is what most people will choose.
       

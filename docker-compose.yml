@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  raspi-bare:
+    image: raspi-bare
+    build: "./docker"
+    volumes:
+      - .:/home/raspi/project
+    command: "bash"

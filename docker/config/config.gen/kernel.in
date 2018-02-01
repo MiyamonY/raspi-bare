@@ -22,6 +22,7 @@ config KERNEL_linux
     bool
     prompt "linux"
     depends on KERNEL_linux_AVAILABLE
+    depends on ! ARCH_avr
     select KERNEL_SUPPORTS_SHARED_LIBS
     help
       Build a toolchain targeting systems running Linux as a kernel.
@@ -31,6 +32,7 @@ config KERNEL_windows
     prompt "windows"
     depends on KERNEL_windows_AVAILABLE
     depends on ARCH_x86
+    depends on EXPERIMENTAL
     select WINDOWS
     help
       Build a toolchain targeting systems running Windows as host
