@@ -6,5 +6,5 @@
  */
 #include "reg.h"
 
-gpio_addr_t gpio_addr __attribute__((section(".peripheral_gpio")));
-system_timer_addr_t system_timer_addr __attribute__((section(".peripheral_system_timer")));
+reg_gpio_t reg_gpio __attribute__((section(".peripheral_gpio")));
+reg_system_timer_t reg_system_timer __attribute__((section(".peripheral_system_timer")));

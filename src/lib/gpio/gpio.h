@@ -8,26 +8,12 @@
 #ifndef _GPIO_H_
 #define _GPIO_H_
 
+#include "lib/reg/reg.h"
 #include "lib/types.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-typedef struct {
-  reg_t GPFSEL0;
-  reg_t GPFSEL1;
-  reg_t GPFSEL2;
-  reg_t GPFSEL3;
-  reg_t GPFSEL4;
-  reg_t GPFSEL5;
-  reg_t reserved1;
-  reg_t GPSET0;
-  reg_t GPSET1;
-  reg_t reserved2;
-  reg_t GPCLR0;
-  reg_t GPCLR1;
-} gpio_addr_t;
 
 typedef enum {
   GPIO_MODE_INPUT = 0b000,
@@ -102,7 +88,7 @@ typedef enum {
   GPIO_OUTPUT_HI,
 } gpio_output_t;
 
-extern void gpio_init(gpio_addr_t *addr);
+extern void gpio_init(reg_gpio_t *addr);
 extern void gpio_set_mode(gpio_pin_t pin, gpio_mode_t mode);
 extern void gpio_set_output(gpio_pin_t pin, gpio_output_t output);
 

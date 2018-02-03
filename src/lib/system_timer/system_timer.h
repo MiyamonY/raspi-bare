@@ -13,15 +13,10 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-typedef struct {
-  reg_t CS;
-  reg_t CLO;
-  reg_t CHI;
-} system_timer_addr_t;
 
 typedef uint64_t system_timer_ms_t;
 
-extern void system_timer_init(system_timer_addr_t *addr);
+extern void system_timer_init(reg_system_timer_t *addr);
 extern uint64_t system_timer_get_time(void);
 extern void system_timer_delay_ms(system_timer_ms_t ms);
 

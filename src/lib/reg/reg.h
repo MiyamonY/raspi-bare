@@ -8,15 +8,35 @@
 #ifndef _REG_H_
 #define _REG_H_
 
-#include "lib/gpio/gpio.h"
-#include "lib/system_timer/system_timer.h"
+#include "lib/types.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-extern gpio_addr_t gpio_addr;
-extern system_timer_addr_t system_timer_addr;
+typedef struct {
+  reg_t GPFSEL0;
+  reg_t GPFSEL1;
+  reg_t GPFSEL2;
+  reg_t GPFSEL3;
+  reg_t GPFSEL4;
+  reg_t GPFSEL5;
+  reg_t reserved1;
+  reg_t GPSET0;
+  reg_t GPSET1;
+  reg_t reserved2;
+  reg_t GPCLR0;
+  reg_t GPCLR1;
+} reg_gpio_t;
+
+typedef struct {
+  reg_t CS;
+  reg_t CLO;
+  reg_t CHI;
+} reg_system_timer_t;
+
+extern reg_gpio_t reg_gpio;
+extern reg_system_timer_t reg_system_timer;
 
 #ifdef __cplusplus
 }

@@ -14,6 +14,6 @@
 void rpi_init(void)
 {
   clearBss();
-  gpio_init(&gpio_addr);
-  system_timer_init(&system_timer_addr);
+  gpio_init(&reg_gpio);
+  system_timer_init(&reg_system_timer);
 }

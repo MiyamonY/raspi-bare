@@ -6,30 +6,31 @@
  */
 
 #include "system_timer.h"
+#include "lib/reg/reg.h"
 #include "lib/types.h"
 
 typedef uint64_t system_timer_us_t;
 
-static system_timer_addr_t *system_timer_addr;
+static reg_system_timer_t *system_timer_p;
 
 static inline system_timer_us_t to_us(system_timer_ms_t ms)
 {
   return ms * 1000;
 }
 
-void system_timer_init(system_timer_addr_t *addr)
+void system_timer_init(reg_system_timer_t *addr)
 {
-  system_timer_addr = addr;
+  system_timer_p = addr;
 }
 
 uint64_t system_timer_get_time(void)
 {
-  uint64_t chi = (uint64_t)system_timer_addr->CHI;
-  uint64_t clo = (uint64_t)system_timer_addr->CLO;
+  uint64_t chi = (uint64_t)system_timer_p->CHI;
+  uint64_t clo = (uint64_t)system_timer_p->CLO;
 
-  if (chi != system_timer_addr->CHI) {
-    chi = (uint64_t)system_timer_addr->CHI;
-    clo = (uint64_t)system_timer_addr->CLO;
+  if (chi != system_timer_p->CHI) {
+    chi = (uint64_t)system_timer_p->CHI;
+    clo = (uint64_t)system_timer_p->CLO;
   }
 
   return (chi << 32) | clo;
