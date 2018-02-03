@@ -28,7 +28,11 @@ SECTIONS
   } > ram
   __bss_end = LOADADDR(.bss) + SIZEOF(.bss);
 
-  .peripheral 0x3F200000 (NOLOAD): {
+  .peripheral_gpio 0x3F200000 (NOLOAD): {
     *(.peripheral_gpio)
+  } > peripheral
+
+  .peripheral_system_timer 0x3F003000 (NOLOAD):{
+    *(.peripheral_system_timer)
   } > peripheral
 }

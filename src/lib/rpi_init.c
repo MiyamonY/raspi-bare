@@ -9,9 +9,11 @@
 #include "gpio/gpio.h"
 #include "reg/reg.h"
 #include "rpi.h"
+#include "system_timer/system_timer.h"
 
 void rpi_init(void)
 {
   clearBss();
   gpio_init(&gpio_addr);
+  system_timer_init(&system_timer_addr);
 }
