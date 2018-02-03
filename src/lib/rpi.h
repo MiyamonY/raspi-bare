@@ -9,6 +9,7 @@
 #define _RPI_H_
 
 #include "gpio/gpio.h"
+#include "system_timer/system_timer.h"
 
 #ifdef __cplusplus
 extern "C" {

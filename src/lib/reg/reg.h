@@ -9,11 +9,14 @@
 #define _REG_H_
 
 #include "lib/gpio/gpio.h"
+#include "lib/system_timer/system_timer.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 extern gpio_addr_t gpio_addr;
+extern system_timer_addr_t system_timer_addr;
 
 #ifdef __cplusplus
 }
