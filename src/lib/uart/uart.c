@@ -49,3 +49,12 @@ void uart_putc(char c)
 {
   uart_addr->DR = 0xff & c;
 }
+
+int32_t uart_getc(void)
+{
+  if ((uart_addr->FR & REG_UART_FR_RXFE) != 0) {
+    return UART_EOF;
+  } else {
+    return uart_addr->DR & 0xff;
+  }
+}
