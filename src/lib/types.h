@@ -15,6 +15,7 @@ extern "C" {
 #if defined UNITTEST
 #include <stdbool.h>
 #include <stdint.h>
+#include <stdlib.h>
 #else
 typedef int int32_t;
 typedef unsigned int uint32_t;
@@ -23,7 +24,6 @@ typedef unsigned long long uint64_t;
 
 typedef volatile int *addr_t;
 typedef volatile uint32_t reg_t;
-
 #ifdef __cplusplus
 }
 #endif

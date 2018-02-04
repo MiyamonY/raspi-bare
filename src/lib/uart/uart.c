@@ -62,3 +62,11 @@ int32_t uart_getc(void)
     return uart_addr->DR & 0xff;
   }
 }
+
+void uart_puts(char buf[], size_t len)
+{
+  for (uint32_t i = 0; i < len; i++) {
+    while (uart_putc(buf[i]) == UART_EOF)
+      ;
+  }
+}

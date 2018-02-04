@@ -22,6 +22,7 @@ extern void uart_init(reg_uart_t *addr);
 extern void uart_begin(uart_baud_t baud);
 extern int32_t uart_putc(char c);
 extern int32_t uart_getc(void);
+extern void uart_puts(char buf[], size_t len);
 
 #ifdef __cplusplus
 }
