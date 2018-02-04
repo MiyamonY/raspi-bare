@@ -45,9 +45,13 @@ void uart_begin(uart_baud_t baud)
   uart_addr->CR = REG_UART_CR_RXE | REG_UART_CR_TXE | REG_UART_CR_UARTEN;
 }
 
-void uart_putc(char c)
+int32_t uart_putc(char c)
 {
-  uart_addr->DR = 0xff & c;
+  if ((uart_addr->FR & REG_UART_FR_TXFF) != 0) {
+    return UART_EOF;
+  } else {
+    return uart_addr->DR = 0xff & c;
+  }
 }
 
 int32_t uart_getc(void)
