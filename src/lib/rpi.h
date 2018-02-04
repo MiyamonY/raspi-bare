@@ -10,6 +10,7 @@
 
 #include "gpio/gpio.h"
 #include "system_timer/system_timer.h"
+#include "uart/uart.h"
 
 #ifdef __cplusplus
 extern "C" {

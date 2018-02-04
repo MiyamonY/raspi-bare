@@ -27,6 +27,31 @@ typedef struct {
   reg_t reserved2;
   reg_t GPCLR0;
   reg_t GPCLR1;
+  reg_t reserved3;
+  reg_t GPLEV0;
+  reg_t GPLEV1;
+  reg_t reserved4;
+  reg_t GPEDS0;
+  reg_t GPEDS1;
+  reg_t reserved5;
+  reg_t GPREN0;
+  reg_t GPREEN1;
+  reg_t reserved6;
+  reg_t GPFEN0;
+  reg_t GPFEN1;
+  reg_t reserved7;
+  reg_t GPHEN0;
+  reg_t GPHEN1;
+  reg_t reserved8;
+  reg_t GPAREN0;
+  reg_t GPAREN1;
+  reg_t reserved9;
+  reg_t GPAFEN0;
+  reg_t GPAFEN1;
+  reg_t reserved10;
+  reg_t GPPUD;
+  reg_t GPPUDCLK0;
+  reg_t GPPUDCLK1;
 } reg_gpio_t;
 
 typedef struct {
@@ -35,8 +60,30 @@ typedef struct {
   reg_t CHI;
 } reg_system_timer_t;
 
+typedef struct {
+  reg_t DR;           /* 0x00 */
+  reg_t RSRECR;       /* 0x04 */
+  reg_t reserved1[4]; /* 0x08 */
+  reg_t FR;           /* 0x18 */
+  reg_t reserved2;    /* 0x1C */
+  reg_t ILPR;         /* 0x20 */
+  reg_t IBRD;         /* 0x24 */
+  reg_t FBRD;         /* 0x28 */
+  reg_t LCRH;         /* 0x2C */
+  reg_t CR;           /* 0x30 */
+} reg_uart_t;
+
+#define REG_UART_LCRH_WLEN_8BITS (0x03 << 5)
+#define REG_UART_LCRH_FEN (0x01 << 4)
+#define REG_UART_CR_RXE (0x01 << 9)
+#define REG_UART_CR_TXE (0x01 << 8)
+#define REG_UART_CR_UARTEN (0x01 << 0)
+#define REG_UART_FR_TXFF (0x01 << 5)
+#define REG_UART_FR_RXFE (0x01 << 4)
+
 extern reg_gpio_t reg_gpio;
 extern reg_system_timer_t reg_system_timer;
+extern reg_uart_t reg_uart;
 
 #ifdef __cplusplus
 }
