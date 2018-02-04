@@ -18,6 +18,7 @@ typedef enum { UART_BAUD_115200 = 115200 } uart_baud_t;
 
 extern void uart_init(reg_uart_t *addr);
 extern void uart_begin(uart_baud_t baud);
+extern void uart_putc(char c);
 
 #ifdef __cplusplus
 }

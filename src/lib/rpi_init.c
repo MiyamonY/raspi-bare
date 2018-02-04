@@ -10,10 +10,12 @@
 #include "reg/reg.h"
 #include "rpi.h"
 #include "system_timer/system_timer.h"
+#include "uart/uart.h"
 
 void rpi_init(void)
 {
   clearBss();
   gpio_init(&reg_gpio);
+  uart_init(&reg_uart);
   system_timer_init(&reg_system_timer);
 }

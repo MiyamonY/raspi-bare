@@ -35,4 +35,8 @@ SECTIONS
   .peripheral_system_timer 0x3F003000 (NOLOAD):{
     *(.peripheral_system_timer)
   } > peripheral
+
+  .peripheral_uart 0x3F201000 (NOLOAD):{
+    *(.peripheral_uart)
+  } > peripheral
 }

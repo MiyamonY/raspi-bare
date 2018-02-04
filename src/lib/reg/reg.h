@@ -81,6 +81,7 @@ typedef struct {
 
 extern reg_gpio_t reg_gpio;
 extern reg_system_timer_t reg_system_timer;
+extern reg_uart_t reg_uart;
 
 #ifdef __cplusplus
 }

@@ -7,7 +7,7 @@ LINKER_SCRIPT=raspi.lds
 
 STARTUP=startup.o
 
-FILES = * lib/* lib/bss/* lib/gpio/* lib/reg/* lib/system_timer/*
+FILES = * lib/* lib/bss/* lib/gpio/* lib/reg/* lib/system_timer/* lib/uart/*
 OBJS= $(foreach files, $(FILES), $(patsubst %.c, %.o, $(filter %.c ,$(wildcard $(files)))))
 CFLAGS=-mfloat-abi=soft -mlittle-endian
 CFLAGS+=-I. -nostdinc -fno-builtin

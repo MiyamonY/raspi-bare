@@ -14,11 +14,10 @@ int main(void)
   rpi_init();
 
   gpio_set_mode(ACT_PIN, GPIO_MODE_OUTPUT);
+  gpio_set_output(ACT_PIN, GPIO_OUTPUT_HI);
 
   while (1) {
-    gpio_set_output(ACT_PIN, GPIO_OUTPUT_HI);
-    system_timer_delay_ms(1000);
-    gpio_set_output(ACT_PIN, GPIO_OUTPUT_LO);
+    uart_putc('a');
     system_timer_delay_ms(1000);
   }
 

@@ -44,3 +44,8 @@ void uart_begin(uart_baud_t baud)
   uart_addr->LCRH = REG_UART_LCRH_FEN | REG_UART_LCRH_WLEN_8BITS;
   uart_addr->CR = REG_UART_CR_RXE | REG_UART_CR_TXE | REG_UART_CR_UARTEN;
 }
+
+void uart_putc(char c)
+{
+  uart_addr->DR = 0xff & c;
+}
