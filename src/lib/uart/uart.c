@@ -70,3 +70,16 @@ void uart_puts(char buf[], size_t len)
       ;
   }
 }
+
+size_t uart_gets(char buf[], size_t len)
+{
+  for (uint32_t i = 0; i < len; i++) {
+    int32_t c;
+    do {
+      c = uart_getc();
+    } while (c == UART_EOF);
+
+    if ((buf[i] = c) == '\r') return i + 1;
+  }
+  return len;
+}
