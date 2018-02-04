@@ -60,6 +60,25 @@ typedef struct {
   reg_t CHI;
 } reg_system_timer_t;
 
+typedef struct {
+  reg_t DR;           /* 0x00 */
+  reg_t RSRECR;       /* 0x04 */
+  reg_t reserved1[4]; /* 0x08 */
+  reg_t FR;           /* 0x18 */
+  reg_t reserved2;    /* 0x1C */
+  reg_t ILPR;         /* 0x20 */
+  reg_t IBRD;         /* 0x24 */
+  reg_t FBRD;         /* 0x28 */
+  reg_t LCRH;         /* 0x2C */
+  reg_t CR;           /* 0x30 */
+} reg_uart_t;
+
+#define REG_UART_LCRH_WLEN_8BITS (0x03 << 5)
+#define REG_UART_LCRH_FEN (0x01 << 4)
+#define REG_UART_CR_RXE (0x01 << 9)
+#define REG_UART_CR_TXE (0x01 << 8)
+#define REG_UART_CR_UARTEN (0x01 << 0)
+
 extern reg_gpio_t reg_gpio;
 extern reg_system_timer_t reg_system_timer;
 
