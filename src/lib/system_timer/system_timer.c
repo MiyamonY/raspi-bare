@@ -4,10 +4,10 @@
  *
  * Created on Sun Feb  4 03:08:56 2018
  */
+#include <stdlib.h>
 
-#include "system_timer.h"
 #include "lib/reg/reg.h"
-#include "lib/types.h"
+#include "system_timer.h"
 
 typedef uint64_t system_timer_us_t;
 

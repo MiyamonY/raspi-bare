@@ -9,7 +9,6 @@
 #define _GPIO_H_
 
 #include "lib/reg/reg.h"
-#include "lib/types.h"
 
 #ifdef __cplusplus
 extern "C" {

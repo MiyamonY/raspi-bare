@@ -4,6 +4,8 @@
  *
  * Created on Sat Feb  3 18:08:49 2018
  */
+#include <stdlib.h>
+
 #include "gpio.h"
 #include "lib/reg/reg.h"
 

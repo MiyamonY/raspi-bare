@@ -4,10 +4,11 @@
  *
  * Created on Sun Feb  4 12:51:36 2018
  */
+#include <stddef.h>
+#include <stdint.h>
 
-#include "uart.h"
 #include "lib/gpio/gpio.h"
-#include "lib/types.h"
+#include "uart.h"
 
 #define UART_CLOCK (uint64_t)(3000000ull)
 #define FRAC_CALC_COEF 10000
@@ -79,7 +80,7 @@ size_t uart_gets(char buf[], size_t len)
       c = uart_getc();
     } while (c == UART_EOF);
 
-    if ((buf[i] = c) == '\r') return i + 1;
+    if ((buf[i] = c) == '\n') return i + 1;
   }
   return len;
 }

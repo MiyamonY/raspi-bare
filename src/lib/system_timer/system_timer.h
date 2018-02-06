@@ -8,6 +8,8 @@
 #ifndef _SYSTEM_TIMER_H_
 #define _SYSTEM_TIMER_H_
 
+#include <stdint.h>
+
 #include "lib/reg/reg.h"
 
 #ifdef __cplusplus
