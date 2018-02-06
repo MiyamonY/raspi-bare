@@ -9,6 +9,7 @@
 #define _UART_H_
 
 #include "lib/reg/reg.h"
+#include <stddef.h>
 
 #ifdef __cplusplus
 extern "C" {

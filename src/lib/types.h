@@ -8,23 +8,15 @@
 #ifndef _TYPES_H_
 #define _TYPES_H_
 
+#include <stdint.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#if defined UNITTEST
-#include <stdbool.h>
-#include <stdint.h>
-#include <stdlib.h>
-#else
-typedef int int32_t;
-typedef unsigned int uint32_t;
-typedef unsigned long long uint64_t;
-typedef unsigned int size_t;
-#endif
-
-typedef volatile int *addr_t;
 typedef volatile uint32_t reg_t;
+typedef volatile reg_t *addr_t;
+
 #ifdef __cplusplus
 }
 #endif

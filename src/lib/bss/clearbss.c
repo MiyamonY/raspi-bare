@@ -4,9 +4,7 @@
  *
  * Created on Fri Feb  2 21:47:00 2018
  */
-#include "lib/types.h"
-
-typedef unsigned int uint32_t;
+#include <stdint.h>
 
 void clearBss(void)
 {

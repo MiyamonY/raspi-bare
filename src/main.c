@@ -4,6 +4,7 @@
  *
  * Created on Fri Feb  2 21:49:25 2018
  */
+#include <stdio.h>
 
 #include "lib/rpi.h"
 
@@ -15,14 +16,15 @@ int main(void)
 
   gpio_set_mode(ACT_PIN, GPIO_MODE_OUTPUT);
   gpio_set_output(ACT_PIN, GPIO_OUTPUT_HI);
-
-  char msg[] = "START PROGRAM\n";
-  uart_puts(msg, sizeof(msg));
+  printf("START PROGRAM\n");
 
   while (1) {
-    char buf[100];
-    size_t len = uart_gets(buf, sizeof(buf));
-    uart_puts(buf, len);
+    char msg[] = "input number >\n";
+    printf("%s", msg);
+
+    int abc;
+    scanf("%d", &abc);
+    printf("< %d\n", abc);
   }
 
   return 0;
