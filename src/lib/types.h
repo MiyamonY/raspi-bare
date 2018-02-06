@@ -14,8 +14,8 @@
 extern "C" {
 #endif
 
-typedef volatile int *addr_t;
 typedef volatile uint32_t reg_t;
+typedef volatile reg_t *addr_t;
 
 #ifdef __cplusplus
 }
