@@ -38,6 +38,7 @@ static inline addr_t gpio_set_addr(uint32_t index)
 {
   switch (index) {
   case 0:
+  default:
     return &gpio_p->GPSET0;
   case 1:
     return &gpio_p->GPSET1;
@@ -48,6 +49,7 @@ static inline addr_t gpio_clr_addr(uint32_t index)
 {
   switch (index) {
   case 0:
+  default:
     return &gpio_p->GPCLR0;
   case 1:
     return &gpio_p->GPCLR1;
@@ -58,6 +60,7 @@ static inline addr_t gpio_pull_pud_addr(uint32_t index)
 {
   switch (index) {
   case 0:
+  default:
     return &gpio_p->GPPUDCLK0;
   case 1:
     return &gpio_p->GPPUDCLK1;
