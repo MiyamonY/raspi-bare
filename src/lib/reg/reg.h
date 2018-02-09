@@ -96,7 +96,13 @@ typedef struct {
 #define REG_SPI_CS_CLEAR_TX (0b01 << 4)
 #define REG_SPI_CS_CLEAR_RX (0b10 << 4)
 #define REG_SPI_CS_CLEAR_BOTH (0b11 << 4)
-#define REG_SPI_CS_TA (0x01 << 7)
+#define REG_SPI_CS_TA (1 << 7)
+#define REG_SPI_CS_DONE (1 << 16)
+#define REG_SPI_CS_DONE_PROGRESS (0 << 16)
+#define REG_SPI_CS_DONE_DONE (1 << 16)
+#define REG_SPI_CS_TXD (1 << 18)
+#define REG_SPI_CS_TXD_FULL (0 << 18)
+#define REG_SPI_CS_TXD_EMPTY (1 << 18)
 
 extern reg_gpio_t reg_gpio;
 extern reg_system_timer_t reg_system_timer;

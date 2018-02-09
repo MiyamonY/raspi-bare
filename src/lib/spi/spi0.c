@@ -24,3 +24,19 @@ void spi0_begin(spi_mode_t mode, spi_clock_t clock)
   spi0_p->CS = REG_SPI_CS_CLEAR_BOTH | mode << 1 | REG_SPI_CS_CS_CS0;
   spi0_p->CLK = CLOCK / clock;
 }
+
+void spi0_tx(byte msg[], size_t len)
+{
+  spi0_p->CS |= REG_SPI_CS_TA;
+
+  for (uint32_t i = 0; i < len; i++) {
+    while ((spi0_p->CS & REG_SPI_CS_TXD) == REG_SPI_CS_TXD_FULL) {
+    }
+    spi0_p->FIFO = msg[i];
+  }
+
+  while ((spi0_p->CS & REG_SPI_CS_DONE) == REG_SPI_CS_DONE_PROGRESS) {
+  };
+
+  spi0_p->CS &= ~REG_SPI_CS_TA;
+}
