@@ -7,6 +7,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#include "lib/gpio/gpio.h"
 #include "lib/reg/reg.h"
 #include "spi0.h"
 
@@ -58,6 +59,11 @@ void spi0_init(reg_spi0_t *spi0)
 
 void spi0_begin(spi_mode_t mode, spi_clock_t clock)
 {
+  gpio_set_mode(GPIO_PIN8, GPIO_MODE_ALT0);
+  gpio_set_mode(GPIO_PIN9, GPIO_MODE_ALT0);
+  gpio_set_mode(GPIO_PIN10, GPIO_MODE_ALT0);
+  gpio_set_mode(GPIO_PIN11, GPIO_MODE_ALT0);
+
   set_cs(REG_SPI_CS_CLEAR_BOTH | mode << 1 | REG_SPI_CS_CS_CS0);
   set_clock(clock);
 }
