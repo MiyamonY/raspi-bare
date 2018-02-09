@@ -90,6 +90,14 @@ typedef struct {
 #define REG_UART_FR_TXFF (0x01 << 5)
 #define REG_UART_FR_RXFE (0x01 << 4)
 
+#define REG_SPI_CS_CS_CS0 (0b00 << 0)
+#define REG_SPI_CS_CS_CS1 (0b01 << 0)
+#define REG_SPI_CS_CS_CS2 (0b10 << 0)
+#define REG_SPI_CS_CLEAR_TX (0b01 << 4)
+#define REG_SPI_CS_CLEAR_RX (0b10 << 4)
+#define REG_SPI_CS_CLEAR_BOTH (0b11 << 4)
+#define REG_SPI_CS_TA (0x01 << 7)
+
 extern reg_gpio_t reg_gpio;
 extern reg_system_timer_t reg_system_timer;
 extern reg_uart_t reg_uart;
