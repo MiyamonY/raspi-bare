@@ -29,8 +29,7 @@ typedef uint32_t spi_clock_t;
 
 extern void spi0_init(reg_spi0_t *spi0);
 extern void spi0_begin(spi_mode_t mode, spi_clock_t clock);
-extern void spi0_tx(byte msg[], size_t len);
-extern void spi0_rx(byte msg[], size_t len);
+extern void spi0_xfer(byte send[], size_t len1, byte receive[], size_t len2);
 
 #ifdef __cplusplus
 }

@@ -49,6 +49,7 @@ static inline byte xfer(byte b)
 
   while ((spi0_p->CS & REG_SPI_CS_RXD) == REG_SPI_CS_RXD_EMPTY) {
   }
+
   return (byte)spi0_p->FIFO;
 }
 
@@ -68,27 +69,15 @@ void spi0_begin(spi_mode_t mode, spi_clock_t clock)
   set_clock(clock);
 }
 
-void spi0_tx(byte msg[], size_t len)
+void spi0_xfer(byte send[], size_t len1, byte receive[], size_t len2)
 {
   spi_enable();
 
-  for (uint32_t i = 0; i < len; i++) {
-    xfer(msg[i]);
+  for (uint32_t i = 0; i < len1; i++) {
+    if (receive != NULL && i < len2) {
+      receive[i] = xfer(send[i]);
+    }
   }
-
-  wait_tx_done();
-
-  spi_disable();
-}
-
-void spi0_rx(byte msg[], size_t len)
-{
-  spi_enable();
-
-  for (uint32_t i = 0; i < len; i++) {
-    msg[i] = xfer(0x00);
-  }
-
   wait_tx_done();
 
   spi_disable();
