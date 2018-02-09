@@ -73,6 +73,15 @@ typedef struct {
   reg_t CR;           /* 0x30 */
 } reg_uart_t;
 
+typedef struct {
+  reg_t CS;   /* 0x00 */
+  reg_t FIFO; /* 0x04 */
+  reg_t CLK;  /* 0x08 */
+  reg_t DLEN; /* 0x0C */
+  reg_t LTOH; /* 0x10 */
+  reg_t DC;   /* 0x14 */
+} reg_spi0_t;
+
 #define REG_UART_LCRH_WLEN_8BITS (0x03 << 5)
 #define REG_UART_LCRH_FEN (0x01 << 4)
 #define REG_UART_CR_RXE (0x01 << 9)
