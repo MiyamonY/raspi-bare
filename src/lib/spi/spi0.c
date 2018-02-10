@@ -80,8 +80,9 @@ void spi0_xfer(byte send[], size_t len1, byte receive[], size_t len2)
   spi_enable();
 
   for (uint32_t i = 0; i < len1; i++) {
-    if (receive != NULL && i < len2) {
-      receive[i] = xfer(send[i]);
+    byte ret = xfer(send[i]);
+    if (receive != NULL && (i < len2)) {
+      receive[i] = ret;
     }
   }
   wait_tx_done();
