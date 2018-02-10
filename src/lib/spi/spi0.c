@@ -20,6 +20,11 @@ static inline void set_cs(reg_t val)
   spi0_p->CS = val;
 }
 
+static inline reg_t get_cs(void)
+{
+  return spi0_p->CS;
+}
+
 static inline void set_clock(spi_clock_t clock)
 {
   for (uint32_t i = 1; i < UINT32_MAX; i *= 2) {
@@ -71,7 +76,7 @@ void spi0_begin(spi_mode_t mode, spi_clock_t clock)
   gpio_set_mode(GPIO_PIN10, GPIO_MODE_ALT0);
   gpio_set_mode(GPIO_PIN11, GPIO_MODE_ALT0);
 
-  set_cs(REG_SPI_CS_CLEAR_BOTH | (mode << 2) | REG_SPI_CS_CS_CS0);
+  set_cs((get_cs() & ~REG_SPI_CS_REN_ENABLE) | REG_SPI_CS_CLEAR_BOTH | (mode << 2) | REG_SPI_CS_CS_CS0);
   set_clock(clock);
 }
 

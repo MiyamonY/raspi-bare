@@ -97,6 +97,8 @@ typedef struct {
 #define REG_SPI_CS_CLEAR_RX (0b10 << 4)
 #define REG_SPI_CS_CLEAR_BOTH (0b11 << 4)
 #define REG_SPI_CS_TA (1 << 7)
+#define REG_SPI_CS_REN (1 << 12)
+#define REG_SPI_CS_REN_ENABLE (1 << 12)
 #define REG_SPI_CS_DONE (1 << 16)
 #define REG_SPI_CS_DONE_PROGRESS (0 << 16)
 #define REG_SPI_CS_DONE_DONE (1 << 16)
