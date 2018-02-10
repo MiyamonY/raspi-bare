@@ -22,7 +22,13 @@ static inline void set_cs(reg_t val)
 
 static inline void set_clock(spi_clock_t clock)
 {
-  spi0_p->CLK = CLOCK / clock;
+  for (uint32_t i = 1; i < UINT32_MAX; i *= 2) {
+    if ((CLOCK / i) <= clock) {
+      spi0_p->CLK = i;
+      return;
+    }
+  }
+  spi0_p->CLK = 0;
 }
 
 static inline void spi_enable(void)
