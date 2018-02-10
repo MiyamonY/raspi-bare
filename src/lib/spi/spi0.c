@@ -65,7 +65,7 @@ void spi0_begin(spi_mode_t mode, spi_clock_t clock)
   gpio_set_mode(GPIO_PIN10, GPIO_MODE_ALT0);
   gpio_set_mode(GPIO_PIN11, GPIO_MODE_ALT0);
 
-  set_cs(REG_SPI_CS_CLEAR_BOTH | mode << 1 | REG_SPI_CS_CS_CS0);
+  set_cs(REG_SPI_CS_CLEAR_BOTH | (mode << 2) | REG_SPI_CS_CS_CS0);
   set_clock(clock);
 }
 
