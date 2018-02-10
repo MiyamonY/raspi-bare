@@ -9,6 +9,7 @@
 #include "gpio/gpio.h"
 #include "reg/reg.h"
 #include "rpi.h"
+#include "spi/spi0.h"
 #include "system_timer/system_timer.h"
 #include "uart/uart.h"
 
@@ -18,4 +19,5 @@ void rpi_init(void)
   gpio_init(&reg_gpio);
   uart_init(&reg_uart);
   system_timer_init(&reg_system_timer);
+  spi0_init(&reg_spi0);
 }

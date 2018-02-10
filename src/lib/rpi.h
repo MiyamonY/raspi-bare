@@ -9,6 +9,7 @@
 #define _RPI_H_
 
 #include "gpio/gpio.h"
+#include "spi/spi0.h"
 #include "system_timer/system_timer.h"
 #include "uart/uart.h"
 

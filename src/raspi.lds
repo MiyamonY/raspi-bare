@@ -39,4 +39,8 @@ SECTIONS
   .peripheral_uart 0x3F201000 (NOLOAD):{
     *(.peripheral_uart)
   } > peripheral
+
+  .peripheral_spi 0x3F204000 (NOLOAD):{
+    *(.peripheral_spi0)
+  } > peripheral
 }

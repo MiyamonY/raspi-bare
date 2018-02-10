@@ -73,6 +73,15 @@ typedef struct {
   reg_t CR;           /* 0x30 */
 } reg_uart_t;
 
+typedef struct {
+  reg_t CS;   /* 0x00 */
+  reg_t FIFO; /* 0x04 */
+  reg_t CLK;  /* 0x08 */
+  reg_t DLEN; /* 0x0C */
+  reg_t LTOH; /* 0x10 */
+  reg_t DC;   /* 0x14 */
+} reg_spi0_t;
+
 #define REG_UART_LCRH_WLEN_8BITS (0x03 << 5)
 #define REG_UART_LCRH_FEN (0x01 << 4)
 #define REG_UART_CR_RXE (0x01 << 9)
@@ -81,9 +90,27 @@ typedef struct {
 #define REG_UART_FR_TXFF (0x01 << 5)
 #define REG_UART_FR_RXFE (0x01 << 4)
 
+#define REG_SPI_CS_CS_CS0 (0b00 << 0)
+#define REG_SPI_CS_CS_CS1 (0b01 << 0)
+#define REG_SPI_CS_CS_CS2 (0b10 << 0)
+#define REG_SPI_CS_CLEAR_TX (0b01 << 4)
+#define REG_SPI_CS_CLEAR_RX (0b10 << 4)
+#define REG_SPI_CS_CLEAR_BOTH (0b11 << 4)
+#define REG_SPI_CS_TA (1 << 7)
+#define REG_SPI_CS_DONE (1 << 16)
+#define REG_SPI_CS_DONE_PROGRESS (0 << 16)
+#define REG_SPI_CS_DONE_DONE (1 << 16)
+#define REG_SPI_CS_RXD (1 << 17)
+#define REG_SPI_CS_RXD_EMPTY (0 << 17)
+#define REG_SPI_CS_RXD_CONTAIN (1 << 17)
+#define REG_SPI_CS_TXD (1 << 18)
+#define REG_SPI_CS_TXD_FULL (0 << 18)
+#define REG_SPI_CS_TXD_EMPTY (1 << 18)
+
 extern reg_gpio_t reg_gpio;
 extern reg_system_timer_t reg_system_timer;
 extern reg_uart_t reg_uart;
+extern reg_spi0_t reg_spi0;
 
 #ifdef __cplusplus
 }
