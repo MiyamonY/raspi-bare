@@ -94,6 +94,19 @@ typedef struct {
   reg_t FREERUNNING; /* 0x20 */
 } reg_timer_t;
 
+typedef struct {
+  reg_t IRQ_BASIC_PENDING;  /* 0x00 */
+  reg_t IRQ_PENDING1;       /* 0x04 */
+  reg_t IRQ_PENDING2;       /* 0x08 */
+  reg_t FIQ_CONTROL;        /* 0x0C */
+  reg_t ENABLE_IRQS1;       /* 0x10 */
+  reg_t ENABLE_IRQS2;       /* 0x14 */
+  reg_t ENABLE_BASIC_IRQS;  /* 0x18 */
+  reg_t DISABLE_IRQS1;      /* 0x1C */
+  reg_t DISABLE_IRQS2;      /* 0x20 */
+  reg_t DISABLE_BASIC_IRQS; /* 0x24 */
+} reg_interrupt_t;
+
 #define REG_UART_LCRH_WLEN_8BITS (0x03 << 5)
 #define REG_UART_LCRH_FEN (0x01 << 4)
 #define REG_UART_CR_RXE (0x01 << 9)
@@ -128,6 +141,14 @@ typedef enum {
   REG_TIMER_CONTROL_16BIT_COUNTER = (0 << 1),
   REG_TIMER_CONTROL_23BIT_COUNTER = (1 << 1),
 } reg_timer_control_timer_bits_t;
+
+typedef enum {
+  REG_BASIC_INTERRUPT_ENABLE_TIMER = (1 << 0),
+} reg_basic_interrupt_enable_t;
+
+typedef enum {
+  REG_BASIC_INTERRUPT_PENDING_TIMER = (1 << 0),
+} reg_basic_interrupt_pending_t;
 
 extern reg_gpio_t reg_gpio;
 extern reg_system_timer_t reg_system_timer;
