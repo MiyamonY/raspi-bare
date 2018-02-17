@@ -82,6 +82,18 @@ typedef struct {
   reg_t DC;   /* 0x14 */
 } reg_spi0_t;
 
+typedef struct {
+  reg_t LOAD;        /* 0x00 */
+  reg_t VALUE;       /* 0x04 */
+  reg_t CONTROL;     /* 0x08 */
+  reg_t IRQ;         /* 0x0C */
+  reg_t RAW_IRQ;     /* 0x10 */
+  reg_t MASKED_IRQ;  /* 0x14 */
+  reg_t RELOAD;      /* 0x18 */
+  reg_t PREDIVIDER;  /* 0x1C */
+  reg_t FREERUNNING; /* 0x20 */
+} reg_timer_t;
+
 #define REG_UART_LCRH_WLEN_8BITS (0x03 << 5)
 #define REG_UART_LCRH_FEN (0x01 << 4)
 #define REG_UART_CR_RXE (0x01 << 9)
@@ -108,6 +120,14 @@ typedef struct {
 #define REG_SPI_CS_TXD (1 << 18)
 #define REG_SPI_CS_TXD_FULL (0 << 18)
 #define REG_SPI_CS_TXD_EMPTY (1 << 18)
+
+#define REG_TIMER_CONTROL_TIMER_ENABLE (1 << 7)
+#define REG_TIMER_CONTROL_INTERRUPT_ENABLE (1 << 5)
+
+typedef enum {
+  REG_TIMER_CONTROL_16BIT_COUNTER = (0 << 1),
+  REG_TIMER_CONTROL_23BIT_COUNTER = (1 << 1),
+} reg_timer_control_timer_bits_t;
 
 extern reg_gpio_t reg_gpio;
 extern reg_system_timer_t reg_system_timer;
