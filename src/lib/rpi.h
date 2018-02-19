@@ -9,8 +9,10 @@
 #define _RPI_H_
 
 #include "gpio/gpio.h"
+#include "interrupt/interrupt.h"
 #include "spi/spi0.h"
 #include "system_timer/system_timer.h"
+#include "timer/timer.h"
 #include "uart/uart.h"
 
 #ifdef __cplusplus

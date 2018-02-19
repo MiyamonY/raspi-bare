@@ -20,4 +20,6 @@ void rpi_init(void)
   uart_init(&reg_uart);
   system_timer_init(&reg_system_timer);
   spi0_init(&reg_spi0);
+  timer_init(&reg_timer);
+  interrupt_init(&reg_interrupt);
 }

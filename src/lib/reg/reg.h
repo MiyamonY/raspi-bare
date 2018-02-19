@@ -154,6 +154,8 @@ extern reg_gpio_t reg_gpio;
 extern reg_system_timer_t reg_system_timer;
 extern reg_uart_t reg_uart;
 extern reg_spi0_t reg_spi0;
+extern reg_timer_t reg_timer;
+extern reg_interrupt_t reg_interrupt;
 
 #ifdef __cplusplus
 }
