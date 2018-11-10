@@ -36,3 +36,7 @@ WORKDIR /home/raspi/cross/src/ct-ng_rpi
 RUN /home/raspi/cross/bin/ct-ng build
 
 VOLUME /home/raspi/project
+
+ENV PATH $PATH:/home/raspi/cross/rpi/arm-unknown-eabi/bin
+
+WORKDIR /home/raspi/project
