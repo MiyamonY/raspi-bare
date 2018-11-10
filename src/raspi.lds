@@ -3,6 +3,7 @@ ENTRY(_start)
 
 MEMORY
 {
+  vector     (rwx): ORIGIN = 0x00000000, LENGTH = 1K
   rom        (rx): ORIGIN = 0x00008000, LENGTH = 1M
   ram        (rw): ORIGIN = 0x01008000, LENGTH = 1M
   peripheral (rw): ORIGIN = 0x3F000000, LENGTH = 0x01000000
@@ -42,5 +43,13 @@ SECTIONS
 
   .peripheral_spi 0x3F204000 (NOLOAD):{
     *(.peripheral_spi0)
+  } > peripheral
+
+  .peripheral.interrupt 0x3F00B200 (NOLOAD):{
+    *(.peripheral.interrupt)
+  } > peripheral
+
+  .peripheral.timer 0x3F00B400 (NOLOAD):{
+    *(.peripheral.timer)
   } > peripheral
 }
