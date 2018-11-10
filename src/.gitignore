@@ -1,5 +1,8 @@
 *.o
 *.elf
 *.img
+*.map
+
+kernel.s
 
 test
