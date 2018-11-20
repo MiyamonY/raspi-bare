@@ -92,6 +92,15 @@ typedef enum {
   GPIO_OUTPUT_HI,
 } gpio_output_t;
 
+
+#define TRST_PIN GPIO_PIN22
+#define RTCK_PIN GPIO_PIN23
+#define TDO_PIN GPIO_PIN24
+#define TCK_PIN GPIO_PIN25
+#define TDI_PIN GPIO_PIN26
+#define TMS_PIN GPIO_PIN27
+#define ACT_PIN GPIO_PIN47
+
 extern void gpio_init(reg_gpio_t *addr);
 extern void gpio_set_mode(gpio_pin_t pin, gpio_mode_t mode);
 extern void gpio_set_output(gpio_pin_t pin, gpio_output_t output);

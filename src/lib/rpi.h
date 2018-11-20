@@ -14,6 +14,7 @@
 #include "system_timer/system_timer.h"
 #include "timer/timer.h"
 #include "uart/uart.h"
+#include "debug/debug.h"
 
 #ifdef __cplusplus
 extern "C" {
