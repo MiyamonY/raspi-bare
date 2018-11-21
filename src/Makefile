@@ -2,6 +2,7 @@ CROSS=arm-unknown-eabi-
 
 CC=$(CROSS)gcc
 LD=$(CROSS)ld
+GDB=$(CROSS)gdb
 OBJCOPY=$(CROSS)objcopy
 OBJDUMP=$(CROSS)objdump
 LINKER_SCRIPT=raspi.lds
@@ -24,6 +25,9 @@ all: kernel.img
 
 kernel.elf: $(STARTUP) $(OBJS) $(LINKER_SCRIPT)
 	$(LD) $(LDFLAGS) $^ -o $@ $(LD_LIBRARY) $(LIBS)
+
+debug: kernel.elf
+	$(GDB) $^
 
 dump: kernel.elf
 	$(OBJDUMP) -DS $< > kernel.s
