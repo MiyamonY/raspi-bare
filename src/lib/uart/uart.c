@@ -10,7 +10,7 @@
 #include "lib/gpio/gpio.h"
 #include "uart.h"
 
-#define UART_CLOCK (uint64_t)(3000000ull)
+#define UART_CLOCK (uint64_t)(48000000ull)
 #define FRAC_CALC_COEF 10000
 #define UART_CLOCK_MUL 16
 #define UART_CLOCK_FRAC_ROUND_ERROR 0.5
@@ -29,6 +29,17 @@ static inline reg_t uart_baud_fractional(uart_baud_t baud)
   return (frac * UART_CLOCK_FRAC_RATIO + UART_CLOCK_FRAC_ROUND_ERROR * FRAC_CALC_COEF) / FRAC_CALC_COEF;
 }
 
+static inline void disable_uart(void)
+{
+  uart_addr->CR &= ~REG_UART_CR_UARTEN;
+  uart_addr->LCRH &= ~REG_UART_LCRH_FEN;
+}
+
+static inline void enable_uart(void)
+{
+  uart_addr->CR = REG_UART_CR_RXE | REG_UART_CR_TXE | REG_UART_CR_UARTEN;
+}
+
 void uart_init(reg_uart_t *addr)
 {
   uart_addr = addr;
@@ -39,11 +50,13 @@ void uart_begin(uart_baud_t baud)
   gpio_set_mode(GPIO_PIN14, GPIO_MODE_ALT0_PULL_DOWN);
   gpio_set_mode(GPIO_PIN15, GPIO_MODE_ALT0_PULL_DOWN);
 
+  disable_uart();
+
   uart_addr->IBRD = uart_baud_integer(baud);
   uart_addr->FBRD = uart_baud_fractional(baud);
 
   uart_addr->LCRH = REG_UART_LCRH_FEN | REG_UART_LCRH_WLEN_8BITS;
-  uart_addr->CR = REG_UART_CR_RXE | REG_UART_CR_TXE | REG_UART_CR_UARTEN;
+  enable_uart();
 }
 
 int32_t uart_putc(char c)

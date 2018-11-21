@@ -18,6 +18,7 @@ void rpi_init(void)
   clearBss();
   gpio_init(&reg_gpio);
   uart_init(&reg_uart);
+  uart_begin(UART_BAUD_115200);
   system_timer_init(&reg_system_timer);
   spi0_init(&reg_spi0);
   timer_init(&reg_timer);

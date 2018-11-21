@@ -112,8 +112,10 @@ typedef struct {
 #define REG_UART_CR_RXE (0x01 << 9)
 #define REG_UART_CR_TXE (0x01 << 8)
 #define REG_UART_CR_UARTEN (0x01 << 0)
+#define REG_UART_FR_TXFE (0x01 << 7)
 #define REG_UART_FR_TXFF (0x01 << 5)
 #define REG_UART_FR_RXFE (0x01 << 4)
+#define REG_UART_FR_BUSY (0x01 << 3)
 
 #define REG_SPI_CS_CS_CS0 (0b00 << 0)
 #define REG_SPI_CS_CS_CS1 (0b01 << 0)
