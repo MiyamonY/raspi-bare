@@ -1,11 +1,11 @@
 OUTPUT_ARCH(arm)
-ENTRY(_start)
+ENTRY(vector)
 
 MEMORY
 {
   rom        (rx): ORIGIN = 0x00008000, LENGTH = 1M
   ram        (rw): ORIGIN = 0x01008000, LENGTH = 1M
-  peripheral (rw): ORIGIN = 0x3F000000, LENGTH = 0x01000000
+  peripheral (rw): ORIGIN = 0x3F000000, LENGTH = 10M
 }
 
 SECTIONS
@@ -28,12 +28,20 @@ SECTIONS
   } > ram
   __bss_end = LOADADDR(.bss) + SIZEOF(.bss);
 
-  .peripheral_gpio 0x3F200000 (NOLOAD): {
-    *(.peripheral_gpio)
-  } > peripheral
-
   .peripheral_system_timer 0x3F003000 (NOLOAD):{
     *(.peripheral_system_timer)
+  } > peripheral
+
+  .peripheral_interrupt 0x3F00B200 (NOLOAD):{
+    *(.peripheral.interrupt)
+  } > peripheral
+
+  .peripheral.timer0 0x3F00B400 (NOLOAD):{
+    *(.peripheral.timer)
+  } > peripheral
+
+  .peripheral_gpio 0x3F200000 (NOLOAD): {
+    *(.peripheral_gpio)
   } > peripheral
 
   .peripheral_uart 0x3F201000 (NOLOAD):{
