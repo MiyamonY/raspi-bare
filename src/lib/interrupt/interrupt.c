@@ -34,3 +34,58 @@ bool interrupt_timer_pending(void)
 {
   return (interrupt_p->IRQ_BASIC_PENDING & REG_BASIC_INTERRUPT_PENDING_TIMER) != 0;
 }
+
+void interrupt_enable_irq(void)
+{
+  asm volatile("mrs r0, cpsr\n\t"
+               "bic r0, r0, #0x80\n\t"
+               "msr cpsr_c, r0":::"r0");
+}
+
+void interrupt_disable_irq(void)
+{
+  asm volatile("mrs r0, cpsr\n\t"
+               "orr r0, r0, #0x80\n\t"
+               "msr cpsr_c, r0":::"r0");
+}
+
+void __attribute__((interrupt("UNDEF"))) interrupt_undef(void)
+{
+  while(true){
+  }
+}
+
+void __attribute__((interrupt("SWI"))) interrupt_swi(void)
+{
+  while(true){
+  }
+}
+
+void __attribute__((interrupt("ABORT"))) interrupt_pref_abort(void)
+{
+  while(true){
+  }
+}
+
+void __attribute__((interrupt("ABORT"))) interrupt_data_abort(void)
+{
+  while(true){
+  }
+}
+
+void __attribute__((interrupt("FIQ"))) interrupt_fiq(void)
+{
+  while(true){
+  }
+}
+
+void __attribute__((weak)) interrupt_irq_callback(void){
+
+}
+
+void __attribute__((interrupt("IRQ"))) interrupt_irq(void)
+{
+  interrupt_disable_irq();
+  interrupt_irq_callback();
+  interrupt_enable_irq();
+}

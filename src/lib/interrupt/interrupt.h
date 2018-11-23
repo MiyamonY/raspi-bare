@@ -20,6 +20,8 @@ extern void interrupt_init(reg_interrupt_t *addr);
 extern void interrupt_disable_all(void);
 extern void interrupt_enable(reg_basic_interrupt_enable_t interrupt);
 extern bool interrupt_timer_pending(void);
+extern void interrupt_enable_irq(void);
+extern void interrupt_disable_irq(void);
 
 #ifdef __cplusplus
 }
